@@ -15,6 +15,7 @@ from matplotlib.collections import PatchCollection
 from matplotlib.patches import Polygon
 from matplotlib.patches import Rectangle
 from scipy.spatial import ConvexHull
+from drawnow import *
 
 from .google_static_maps_api import GoogleStaticMapsAPI
 from .google_static_maps_api import MAPTYPE
@@ -120,11 +121,12 @@ def plot_markers(markers, maptype=MAPTYPE):
         markers=markers[fields].loc[~nans].T.to_dict().values(),
         maptype=maptype,
     )
-    plt.figure(figsize=(10, 10))
+    f=plt.figure(figsize=(10, 10))
     plt.imshow(np.array(img))
     plt.tight_layout()
     plt.axis('off')
     plt.show()
+    return f
 
 
 def heatmap(latitudes, longitudes, values, resolution=None, maptype=MAPTYPE):
